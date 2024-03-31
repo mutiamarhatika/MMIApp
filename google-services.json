@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "764082382646",
+    "firebase_url": "https://rismmmi-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "rismmmi",
+    "storage_bucket": "rismmmi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764082382646:android:33af7720f6d1534e90f597",
+        "android_client_info": {
+          "package_name": "com.awesomeproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlslGI_aT-ukUyAVf0I3BG8qCyHHIUZJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764082382646:android:d348d2fa08c4547190f597",
+        "android_client_info": {
+          "package_name": "com.rism.MMiInfo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlslGI_aT-ukUyAVf0I3BG8qCyHHIUZJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764082382646:android:a51c36bd890d18f890f597",
+        "android_client_info": {
+          "package_name": "com.rism.mmiinfo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlslGI_aT-ukUyAVf0I3BG8qCyHHIUZJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
