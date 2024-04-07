@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image, TouchableHighlight } from "react-native";
 
 const FirstPage = () => {
     const navigation = useNavigation();
@@ -12,20 +12,16 @@ const FirstPage = () => {
     }
     return (
         <View style={styles.container}>
-            <View style={styles.navBar}>
-                <Text style={styles.title}>Login Page</Text>
+            <View style={{ alignItems: 'center', justifyContent: 'center', height: '70%', marginHorizontal: 20 }}>
+                <Text style={[styles.title, { padding: 20 }]}>Yuk Kenali Dirimu Dulu</Text>
+                <Image source={require('../GAMBARMMI/fist.png')} style={{ width: 300, height: 300 }} />
+                <Text style={{ color: 'white', fontWeight: 'bold', marginLeft: 30, marginRight: 30, textAlign: 'center' }}>Note: Jika anda adalah admin maka klik tombol admin, jika anda bukan admin maka klik tombol user</Text>
             </View>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={adminPress}
-                >
+            <View style={{ alignItems: "center", gap: 10 }}>
+                <TouchableOpacity onPress={adminPress} style={{ width: '80%', backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: 40, borderRadius: 10 }}>
                     <Text style={styles.buttonText}>Admin</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={userPress}
-                >
+                <TouchableOpacity onPress={userPress} style={{ width: '80%', backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: 40, borderRadius: 10 }}>
                     <Text style={styles.buttonText}>User</Text>
                 </TouchableOpacity>
             </View>
@@ -41,7 +37,7 @@ const handleLogin = (type) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: "#f8981d",
     },
     navBar: {
         backgroundColor: "#4CAF50",
@@ -50,7 +46,7 @@ const styles = StyleSheet.create({
     },
     title: {
         color: "#fff",
-        fontSize: 20,
+        fontSize: 24,
         fontWeight: "bold",
     },
     buttonContainer: {
@@ -66,8 +62,8 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
     buttonText: {
-        color: "#fff",
-        fontSize: 18,
+        color: "#f8981d",
+        fontSize: 16,
         fontWeight: "bold",
     },
 });

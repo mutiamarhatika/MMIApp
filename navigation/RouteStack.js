@@ -15,7 +15,7 @@ const Stack = createStackNavigator();
 
 const Routes = () => {
     return (
-        <Stack.Navigator initialRouteName="MainPage">
+        <Stack.Navigator initialRouteName="InfoGempa">
             <Stack.Screen name="MainPage" component={MainScreen} options={{ headerShown: false }} />
             <Stack.Screen name="InputPage" component={BottomTabsScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Explore" component={ShakeMapScreen} options={{ headerShown: false }} />

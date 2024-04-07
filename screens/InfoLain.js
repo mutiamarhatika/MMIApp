@@ -40,7 +40,10 @@ const App = () => {
           latitudeDelta: 1,
           longitudeDelta: 1,
         }} provider={PROVIDER_GOOGLE} showsUserLocation={true} showsCompass={true}>
-          <Marker coordinate={{ latitude: latitude, longitude: longitude }} />
+          <Marker coordinate={{ latitude: latitude, longitude: longitude }}>
+            <MaterialCommunityIcons name='circle-double' size={30} color='black' />
+            {/* <Image source={require('../GAMBARMMI/mark.gif')} style={{width:30, height:30}}/> */}
+          </Marker>
         </MapView>
       )}
       {/* <View style={styles.overlay1}> */}
