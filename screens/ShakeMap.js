@@ -7,7 +7,7 @@ const ShakeMap = () => {
   const navigation = useNavigation()
 
   const handleBack = () => {
-    navigation.navigate('HomePage')
+    navigation.navigate('MainPage')
   }
   useEffect(() => {
     fetch('https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json')

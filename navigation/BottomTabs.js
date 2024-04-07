@@ -5,6 +5,7 @@ import {Text, View, StyleSheet} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import InputGempa from '../screens/InputGempa';
 import maps from '../screens/maps';
+import Main from '../screens/MainScreen';
 
 const Tab = createBottomTabNavigator();
 // const Tab = createMaterialBottomTabNavigator();
@@ -20,60 +21,6 @@ function MyTabs() {
         tabBarShowLabel: false,
         tabBarBackground: () => {},
       }}>
-      <Tab.Screen
-        name="Maps"
-        component={maps}
-        options={{
-          tabBarIcon: ({focused, size}) => (
-            <View
-              style={[
-                styles.mainView,
-                {backgroundColor: focused ? '#f8981d' : 'white'},
-              ]}>
-              <MaterialCommunityIcons
-                name="google-maps"
-                size={size}
-                style={{color: focused ? 'white' : 'black'}}
-              />
-              <Text
-                style={{
-                  color: focused ? 'white' : 'black',
-                  fontSize: 10,
-                  fontWeight: 'bold',
-                }}>
-                Maps
-              </Text>
-            </View>
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Info MMI"
-        component={MmiScreen}
-        options={{
-          tabBarIcon: ({focused, size}) => (
-            <View
-              style={[
-                styles.mainView,
-                {backgroundColor: focused ? '#f8981d' : 'white'},
-              ]}>
-              <MaterialCommunityIcons
-                name="vibrate"
-                size={size}
-                style={{color: focused ? 'white' : 'black'}}
-              />
-              <Text
-                style={{
-                  color: focused ? 'white' : 'black',
-                  fontSize: 10,
-                  fontWeight: 'bold',
-                }}>
-                First
-              </Text>
-            </View>
-          ),
-        }}
-      />
       <Tab.Screen
         name="Input Gempa"
         component={InputGempa}
@@ -102,6 +49,33 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
+        name="Maps"
+        component={maps}
+        options={{
+          tabBarIcon: ({ focused, size }) => (
+            <View
+              style={[
+                styles.mainView,
+                { backgroundColor: focused ? '#f8981d' : 'white' },
+              ]}>
+              <MaterialCommunityIcons
+                name="google-maps"
+                size={size}
+                style={{ color: focused ? 'white' : 'black' }}
+              />
+              <Text
+                style={{
+                  color: focused ? 'white' : 'black',
+                  fontSize: 10,
+                  fontWeight: 'bold',
+                }}>
+                Maps
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      {/* <Tab.Screen
         name=","
         component={OtherScreen}
         options={{
@@ -127,7 +101,7 @@ function MyTabs() {
             </View>
           ),
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 }
@@ -136,7 +110,7 @@ const styles = StyleSheet.create({
   mainView: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 55,
+    width: 47,
     height: 45,
     borderRadius: 25,
   },

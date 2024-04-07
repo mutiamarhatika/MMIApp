@@ -12,6 +12,7 @@ import {
   ToastAndroid,
   Alert,
   Platform,
+  TouchableHighlight,
 } from 'react-native';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import BottomSheetDialog from '../components/lokasi';
@@ -21,6 +22,7 @@ import {dataMMI} from '../components/dropdown.tsx';
 import EditText from '../components/edittext.tsx';
 import TextButton from '../components/textbutton.tsx';
 import {SelectList} from 'react-native-dropdown-select-list';
+import {Dropdown} from 'react-native-element-dropdown';
 import storage from '@react-native-firebase/storage';
 
 import * as ImagePicker from 'react-native-image-picker';
@@ -31,7 +33,7 @@ const Input = () => {
   const ref: any = useRef();
   const [location, setLocationButtonText] = useState('Lokasi');
   const [namaPengirim, setNamaPengirim] = useState('');
-  const [tipeMMI, setTipeMMI] = useState<any>('');
+  const [tipeMMI, setTipeMMI] = useState('');
   const [image, setImage] = useState<any>('');
 
   const sendDatatoFirebase = async () => {
@@ -45,6 +47,11 @@ const Input = () => {
             image,
             coordinate: markerCoordinate,
           });
+          // setTipeMMI('');
+          // setNamaPengirim('');
+          // setLocationButtonText('Lokasi');
+          // setImage(null);
+          // setMarkerCoordinate(null);
           ToastAndroid.show('Data Terkirim', ToastAndroid.SHORT);
         } else {
           console.log(image);
@@ -87,7 +94,7 @@ const Input = () => {
         granted['android.permission.ACCESS_COARSE_LOCATION'] ===
           PermissionsAndroid.RESULTS.GRANTED
       ) {
-        console.log('Location permission granted');
+        // console.log('Location permission granted');
         return true;
       } else {
         console.log('Location permission denied');
@@ -169,6 +176,45 @@ const Input = () => {
     ToastAndroid.show('Foto dihapus', ToastAndroid.SHORT);
   };
 
+  // // Manipulasi dataMMI agar nilai dan deskripsi digabungkan menjadi satu string
+  // const formattedDataMMI = dataMMI.map(item => ({
+  //   key: item.value,
+  //   // value: item.value,
+  //   value: (
+  //     <View style={{flexDirection: 'row'}}>
+  //       <Image source={item.image} style={{width: 40, height: 40}} />
+  //       <View style={{marginLeft: 10}}>
+  //         <Text style={{fontWeight: 'bold'}}>{`${item.value}`}</Text>
+  //         <Text
+  //           style={{fontSize: 12, marginRight: 90}}
+  //           numberOfLines={2}
+  //           ellipsizeMode="tail">{`${item.description}`}</Text>
+  //       </View>
+  //     </View>
+  //   ),
+  // }));
+
+  const formattedDataMMI = dataMMI.map(item => ({
+    key: item.key,
+    value: (
+      <View>
+        {/* <Image source={item.image} style={{width: 60, height: 60, backgroundColor:'red'}} /> */}
+        <View>
+          <Text style={{fontWeight: 'bold', marginTop: 3, color:'black'}}>
+            {item.value.split('-')[0]}
+          </Text>
+          <Text style={{fontSize: 12, marginTop: 5}}>
+            {item.value.split('-')[1]}
+          </Text>
+          <Text style={{fontSize: 12}}>{item.value.split('-')[2]}</Text>
+          {/* <Text style={{fontSize: 12}}>{item.value.split('-')[3]}</Text>
+          <Text style={{fontSize: 12}}>{item.value.split('-')[4]}</Text>
+          <Text style={{fontSize: 12}}>{item.value.split('-')[5]}</Text> */}
+        </View>
+      </View>
+    ),
+  }));
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -179,15 +225,18 @@ const Input = () => {
             <Text style={styles.cardSubtitle}>
               Pilih tipe MMI sesuai dengan gempa yang Anda rasakan
             </Text>
-            <View style={styles.editText}>
+            <View style={[styles.editText, {}]}>
               <SelectList
                 inputStyles={styles.cardSubtitle}
                 dropdownTextStyles={styles.cardSubtitle}
+                dropdownItemStyles={{marginTop: -10, height: 'auto'}}
+                // boxStyles={{backgroundColor:'pink',}}
+                // dropdownStyles={{backgroundColor:'red'}}
                 searchPlaceholder="Cari"
                 placeholder="Pilih Tipe MMI"
                 setSelected={(val: any) => setTipeMMI(val)}
-                data={dataMMI}
-                save="value"
+                data={formattedDataMMI}
+                save="key"
               />
             </View>
           </View>
@@ -258,7 +307,9 @@ const Input = () => {
           </View>
         </View>
 
-        <Button title="Kirim" onPress={sendDatatoFirebase} />
+        <TouchableHighlight onPress={sendDatatoFirebase} style={styles.button}>
+          <Text style={{color:'white', fontWeight:'bold'}}>Kirim Data</Text>
+        </TouchableHighlight>
       </ScrollView>
     </SafeAreaView>
   );
@@ -280,7 +331,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   cardTitle: {
-    color: '#000000',
+    color: '#f8981d',
     fontSize: 18,
     fontWeight: 'bold',
   },
@@ -290,20 +341,54 @@ const styles = StyleSheet.create({
   },
   editText: {
     marginTop: 20,
-    justifyContent: 'flex-end',
+    // justifyContent: 'flex-end',
   },
   map: {
     marginTop: 20,
     height: 400,
   },
   button: {
-    margin: 20,
+    // marginTop: 20,
+    backgroundColor: '#f8981d',
+    padding: 10,
+    borderRadius: 10,
+    alignItems:'center',
+    marginHorizontal:20,
+    marginBottom:10
   },
   photo: {
     width: 'auto',
     height: 200,
     marginTop: 20,
   },
+  // DROPDOWN ELEMENT
+  dropdown: {
+    margin: 16,
+    height: 50,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 0.5,
+  },
+  icon: {
+    marginRight: 5,
+  },
+  placeholderStyle: {
+    fontSize: 16,
+  },
+  selectedTextStyle: {
+    fontSize: 16,
+  },
+  iconStyle: {
+    width: 20,
+    height: 20,
+  },
+  inputSearchStyle: {
+    height: 40,
+    fontSize: 16,
+  },
+  // imageStyle: {
+  //   width: 24,
+  //   height: 24,
+  // },
 });
 
 interface Action {

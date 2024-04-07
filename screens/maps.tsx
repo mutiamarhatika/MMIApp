@@ -105,6 +105,9 @@ const Maps = () => {
       <MapView
         style={styles.map}
         provider={PROVIDER_GOOGLE}
+        showsUserLocation={true}
+        showsMyLocationButton={true}
+        showsCompass={true}
         initialRegion={{
           latitude: -7.6760598,
           longitude: 110.7080488,

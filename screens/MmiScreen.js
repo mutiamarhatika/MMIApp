@@ -121,21 +121,6 @@ class ImageList extends Component {
 
         return (
             <View style={styles.container}>
-                <TextInput
-                    style={{
-                        height: 40,
-                        width: '90%',
-                        backgroundColor: '#C4DFDF',
-                        // borderwidth: 3,
-                        paddingLeft: 10,
-                        marginVertical: 20,
-                        marginHorizontal: 10,
-                        borderRadius: 50,
-                    }}
-                    onChangeText={this.searchFilterFunction}
-                    value={this.state.text}
-                    placeholder="Cari...."
-                />
 
                 <View style={{ flexDirection: "row", backgroundColor:'#D2E9E9', borderRadius:20, marginBottom:20, marginHorizontal:20}}>
                     <View style={{alignItems:'center', width:"25%", justifyContent:'center'}}>

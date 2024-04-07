@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, Image, StyleSheet, ScrollView, TouchableOpacity, TouchableHighlight, TouchableOpacityBase } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import proj4 from 'proj4';
 import { useNavigation } from '@react-navigation/native';
 
@@ -39,7 +39,7 @@ const App = () => {
           longitude: longitude,
           latitudeDelta: 1,
           longitudeDelta: 1,
-        }}>
+        }} provider={PROVIDER_GOOGLE} showsUserLocation={true} showsCompass={true}>
           <Marker coordinate={{ latitude: latitude, longitude: longitude }} />
         </MapView>
       )}
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject,
-    width: '100%',
+    // width: '100%',
     // height: '100%',
     marginTop: -250,
   },
