@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image, TouchableHighlight } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 
 const FirstPage = () => {
     const navigation = useNavigation();
@@ -15,13 +15,13 @@ const FirstPage = () => {
             <View style={{ alignItems: 'center', justifyContent: 'center', height: '70%', marginHorizontal: 20 }}>
                 <Text style={[styles.title, { padding: 20 }]}>Yuk Kenali Dirimu Dulu</Text>
                 <Image source={require('../GAMBARMMI/fist.png')} style={{ width: 300, height: 300 }} />
-                <Text style={{ color: 'white', fontWeight: 'bold', marginLeft: 30, marginRight: 30, textAlign: 'center' }}>Note: Jika anda adalah admin maka klik tombol admin, jika anda bukan admin maka klik tombol user</Text>
+                <Text style={{ color: 'black', fontWeight: 'bold', marginLeft: 30, marginRight: 30, textAlign: 'center' }}>Note: Jika anda adalah admin maka klik tombol admin, jika anda bukan admin maka klik tombol user</Text>
             </View>
             <View style={{ alignItems: "center", gap: 10 }}>
-                <TouchableOpacity onPress={adminPress} style={{ width: '80%', backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: 40, borderRadius: 10 }}>
+                <TouchableOpacity onPress={adminPress} style={{ width: '80%', backgroundColor: '#f8981d', alignItems: 'center', justifyContent: 'center', height: 40, borderRadius: 10 }}>
                     <Text style={styles.buttonText}>Admin</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={userPress} style={{ width: '80%', backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', height: 40, borderRadius: 10 }}>
+                <TouchableOpacity onPress={userPress} style={{ width: '80%', backgroundColor: '#f8981d', alignItems: 'center', justifyContent: 'center', height: 40, borderRadius: 10 }}>
                     <Text style={styles.buttonText}>User</Text>
                 </TouchableOpacity>
             </View>
@@ -37,7 +37,7 @@ const handleLogin = (type) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#f8981d",
+        backgroundColor: "#fff",
     },
     navBar: {
         backgroundColor: "#4CAF50",
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     title: {
-        color: "#fff",
+        color: "black",
         fontSize: 24,
         fontWeight: "bold",
     },
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
     buttonText: {
-        color: "#f8981d",
+        color: "#fff",
         fontSize: 16,
         fontWeight: "bold",
     },

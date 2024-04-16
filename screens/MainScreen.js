@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, Image, ScrollView } from 'react-native'
+import { View, Text, SafeAreaView, Image, ScrollView, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -32,10 +32,10 @@ const MainScreen = () => {
       <View style={styles.header}>
         <View style={styles.containerHeader}>
           <View>
-            <Text style={styles.title}>Selamat Datang!</Text>
+            <Text style={styles.title}>Selamat Datang User!</Text>
           </View>
           <View style={styles.subContainerHeader}>
-            <Text style={styles.subTitle}>Pengguna Aplikasi MMI</Text>
+            <Text style={styles.subTitle}>Aplikasi MMI</Text>
             <MaterialCommunityIcons name='account-circle' size={70} color='white' style={{ marginTop: -40, marginRight: -10 }} />
           </View>
           <TouchableOpacity style={[styles.subContainerHeader, { marginTop: 25 }]} onPress={handleInfoGempaTerkini}>

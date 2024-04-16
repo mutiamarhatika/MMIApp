@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Image, StyleSheet, ScrollView, TouchableOpacity, TouchableHighlight, TouchableOpacityBase } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, TouchableHighlight } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-import proj4 from 'proj4';
 import { useNavigation } from '@react-navigation/native';
 
 const App = () => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList, Image, Text, StyleSheet, TextInput } from 'react-native';
+import { View, FlatList, Image, Text, StyleSheet } from 'react-native';
 
 const data = [
     {
@@ -89,66 +89,28 @@ const data = [
 ];
 
 class ImageList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            text: '',
-            data: data,
-        };
-    }
-
-    searchFilterFunction = text => {
-        this.setState({ text }, () => {
-            this.search();
-        });
-    };
-
-    search = () => {
-        const { text } = this.state;
-        let dataSearch = data.filter(
-            item =>
-                item.description2.toLowerCase().includes(text.toLowerCase()) ||
-                item.description.toLowerCase().includes(text.toLowerCase()),
-        );
-
-        this.setState({
-            dataSearch: dataSearch,
-        });
-    };
     render() {
-        const { text, dataSearch } = this.state;
-        const dataSource = text ? dataSearch : data;
-
         return (
             <View style={styles.container}>
-
-                <View style={{ flexDirection: "row", backgroundColor:'#D2E9E9', borderRadius:20, marginBottom:20, marginHorizontal:20}}>
-                    <View style={{alignItems:'center', width:"25%", justifyContent:'center'}}>
-                        <Image
-                            source={require('../GAMBARMMI/mmicenter.png')}
-                            style={{ width: 100, height: 140, resizeMode: 'contain', marginLeft:0}}
-                        />
-                    </View>
-                    <View style={{alignItems:'center', width:"75%", marginRight:20, justifyContent:'center'}}>
-                        <Text style={{ fontWeight: 'bold', fontSize:15 }}>Modified Mercalli Intensity</Text>
-                        <Text style={{textAlign:'justify', fontSize:13}}>Skala Mercalli adalah satuan untuk mengukur kekuatan gempa bumi
-                            yang terbagi menjadi 12 pecahan berdasarkan informasi dari
-                            orang-orang yang selamat dari gempa tersebut dan juga dengan
-                            melihat serta membandingkan tingkat kerusakan akibat gempa bumi
-                            tersebut.</Text>
-                    </View>
-                </View>
+                <Text
+                    style={{
+                        fontWeight: 'bold',
+                        fontSize: 30,
+                        color: 'white',
+                        marginBottom: 20,
+                    }}>
+                    MMInfo
+                </Text>
 
                 <View
                     style={{
-                        backgroundColor: '#89B5AF',
-                        height: 500,
+                        backgroundColor: '#f8981d',
+                        height: 700,
                         borderRadius: 20,
-                        widht: 500,
-                        marginHorizontal:10
+                        marginHorizontal: 10,
                     }}>
                     <FlatList
-                        data={dataSource}
+                        data={data}
                         keyExtractor={item => item.id}
                         renderItem={({ item }) => (
                             <View style={styles.itemContainer}>
@@ -170,14 +132,14 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'white',
+        backgroundColor: '#f8981d',
     },
     itemContainer: {
         width: 400,
         flexDirection: 'row',
         borderColor: 'black',
         borderwidht: 10,
-        // backgroundColor: '#89B5AF',
+        backgroundColor: 'white',
         marginTop: 20,
         borderRadius: 10,
     },
@@ -188,12 +150,12 @@ const styles = StyleSheet.create({
     },
     description1: {
         textAlign: 'justify',
-        // marginTop: 10,
+        //marginTop: 10,
         marginLeft: 10,
         marginRight: 150,
         fontSize: 15,
         fontWeight: 'bold',
-        color: 'white',
+        color: 'black',
     },
     description: {
         textAlign: 'justify',
@@ -201,7 +163,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 150,
         fontSize: 12,
-        color: 'white',
+        color: 'black',
     },
 });
 
