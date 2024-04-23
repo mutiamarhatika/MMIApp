@@ -13,6 +13,7 @@ import {
   Alert,
   Platform,
   TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import BottomSheetDialog from '../components/lokasi';
@@ -26,6 +27,8 @@ import {Dropdown} from 'react-native-element-dropdown';
 import storage from '@react-native-firebase/storage';
 
 import * as ImagePicker from 'react-native-image-picker';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useNavigation} from '@react-navigation/native';
 
 const Input = () => {
   const [markerCoordinate, setMarkerCoordinate] = useState(null);
@@ -35,6 +38,11 @@ const Input = () => {
   const [namaPengirim, setNamaPengirim] = useState('');
   const [tipeMMI, setTipeMMI] = useState('');
   const [image, setImage] = useState<any>('');
+
+  const navigation = useNavigation();
+  const handleBack = () => {
+    navigation.goBack();
+  };
 
   const sendDatatoFirebase = async () => {
     if (tipeMMI && namaPengirim && location && markerCoordinate) {
@@ -200,7 +208,7 @@ const Input = () => {
       <View>
         {/* <Image source={item.image} style={{width: 60, height: 60, backgroundColor:'red'}} /> */}
         <View>
-          <Text style={{fontWeight: 'bold', marginTop: 3, color:'black'}}>
+          <Text style={{fontWeight: 'bold', marginTop: 3, color: 'black'}}>
             {item.value.split('-')[0]}
           </Text>
           <Text style={{fontSize: 12, marginTop: 5}}>
@@ -218,6 +226,29 @@ const Input = () => {
   return (
     <SafeAreaView>
       <ScrollView>
+        <View
+          style={{
+            backgroundColor: '#f8981d',
+            flexDirection: 'row',
+            height: 60,
+            alignItems: 'center',
+            borderBottomLeftRadius:15,
+            borderBottomRightRadius:15
+          }}>
+          <TouchableOpacity
+            onPress={handleBack}
+            style={{marginRight: '20%', marginLeft: '5%'}}
+            activeOpacity={0.8}>
+            <MaterialCommunityIcons
+              name="arrow-left-drop-circle"
+              size={30}
+              color="white"
+            />
+          </TouchableOpacity>
+          <Text style={{color: 'white', fontSize: 18, fontWeight: 'bold'}}>
+            Input Data Gempa
+          </Text>
+        </View>
         <View style={styles.container}>
           {/*Tipe MMI*/}
           <View style={[styles.elevatedCard]}>
@@ -305,11 +336,13 @@ const Input = () => {
               )}
             </MapView>
           </View>
-        </View>
 
-        <TouchableHighlight onPress={sendDatatoFirebase} style={styles.button}>
-          <Text style={{color:'white', fontWeight:'bold'}}>Kirim Data</Text>
-        </TouchableHighlight>
+          <TouchableHighlight
+            onPress={sendDatatoFirebase}
+            style={styles.button}>
+            <Text style={{color: 'white', fontWeight: 'bold'}}>Kirim Data</Text>
+          </TouchableHighlight>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -319,7 +352,7 @@ const styles = StyleSheet.create({
   container: {
     marginStart: 20,
     marginEnd: 20,
-    marginBottom: 20,
+    marginBottom: 40,
   },
   elevatedCard: {
     padding: 20,
@@ -348,13 +381,13 @@ const styles = StyleSheet.create({
     height: 400,
   },
   button: {
-    // marginTop: 20,
+    marginTop: 20,
     backgroundColor: '#f8981d',
     padding: 10,
     borderRadius: 10,
-    alignItems:'center',
-    marginHorizontal:20,
-    marginBottom:10
+    alignItems: 'center',
+    marginHorizontal: 20,
+    marginBottom: 10,
   },
   photo: {
     width: 'auto',

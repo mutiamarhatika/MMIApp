@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
+import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification'; 
 import {
     View,
     Text,
@@ -24,7 +25,13 @@ const PageEmail = () => {
             Alert.alert('Login Successful', 'Welcome!');
             navigation.navigate('Admin');
         } else {
-            Alert.alert('Login Failed', 'Incorrect email or password.');
+            Alert.alert('Login Failed', 'Incorrect email or password.', [{
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+            }, {
+                text: 'OK', onPress: () => console.log('OK Pressed')
+            }]);
         }
     };
 
@@ -62,7 +69,7 @@ const PageEmail = () => {
             </View>
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={{ width: '80%', backgroundColor: '#f8981d', alignItems: 'center', justifyContent: 'center', height: 40, borderRadius: 10 }} onPress={handleLogin}>
-                    <Text style={{color:'white', fontWeight:'bold'}}>Login</Text>
+                    <Text style={{ color: 'white', fontWeight: 'bold' }}>Login</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -112,7 +119,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         width: '100%',
         marginTop: 20,
-        alignItems:'center'
+        alignItems: 'center'
     },
 });
 

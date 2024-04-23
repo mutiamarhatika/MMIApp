@@ -17,11 +17,11 @@ const FirstPage = () => {
                 <Image source={require('../GAMBARMMI/fist.png')} style={{ width: 300, height: 300 }} />
                 <Text style={{ color: 'black', fontWeight: 'bold', marginLeft: 30, marginRight: 30, textAlign: 'center' }}>Note: Jika anda adalah admin maka klik tombol admin, jika anda bukan admin maka klik tombol user</Text>
             </View>
-            <View style={{ alignItems: "center", gap: 10 }}>
-                <TouchableOpacity onPress={adminPress} style={{ width: '80%', backgroundColor: '#f8981d', alignItems: 'center', justifyContent: 'center', height: 40, borderRadius: 10 }}>
+            <View style={{ alignItems: "center", gap: 10, marginTop:50 }}>
+                <TouchableOpacity onPress={adminPress} style={{ width: '70%', backgroundColor: '#f8981d', alignItems: 'center', justifyContent: 'center', height: 40, borderRadius: 10 }}>
                     <Text style={styles.buttonText}>Admin</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={userPress} style={{ width: '80%', backgroundColor: '#f8981d', alignItems: 'center', justifyContent: 'center', height: 40, borderRadius: 10 }}>
+                <TouchableOpacity onPress={userPress} style={{ width: '70%', backgroundColor: '#f8981d', alignItems: 'center', justifyContent: 'center', height: 40, borderRadius: 10 }}>
                     <Text style={styles.buttonText}>User</Text>
                 </TouchableOpacity>
             </View>

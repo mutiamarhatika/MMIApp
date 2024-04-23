@@ -13,6 +13,7 @@ import LoginPage from '../screens/LoginPage';
 import AdminScreen from '../screens/AdminScreen';
 import TabelScreen from '../screens/TabelScreen';
 import SeeMap from '../screens/maps'
+import Table from '../screens/Table'
 
 const Stack = createStackNavigator();
 
@@ -27,7 +28,7 @@ const Routes = () => {
             <Stack.Screen name="First" component={FirstPage} options={{ headerShown: false }} />
             <Stack.Screen name="Login" component={LoginPage} options={{ headerShown: false }} />
             <Stack.Screen name="Admin" component={AdminScreen} options={{ headerShown: false }} />
-            <Stack.Screen name="TabelData" component={TabelScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="TabelData" component={Table} options={{ headerShown: false }} />
             <Stack.Screen name="Map" component={SeeMap} options={{ headerShown: false }} />
         </Stack.Navigator>
     )

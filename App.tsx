@@ -7,13 +7,13 @@ import firebase from '@react-native-firebase/app';
 const App = () => {
   if (!firebase.apps.length) {
     firebase.initializeApp({
-      apiKey: 'AIzaSyAlslGI_aT-ukUyAVf0I3BG8qCyHHIUZJk',
-      projectId: 'rismmmi',
-      storageBucket: 'rismmmi.appspot.com',
-      messagingSenderId: '764082382646',
-      appId: '1:764082382646:android:d348d2fa08c4547190f597',
+      apiKey: 'AIzaSyDv45Us8BhCgbxm-f0kU5vJFIuUcLyYvDE',
+      projectId: 'react-native-mmi-app',
+      storageBucket: 'react-native-mmi-app.appspot.com',
+      messagingSenderId: '541576186641',
+      appId: '1:541576186641:web:e9f31a1350f26cb388dab0',
       databaseURL:
-        'https://rismmmi-default-rtdb.asia-southeast1.firebasedatabase.app',
+        'https://react-native-mmi-app-default-rtdb.asia-southeast1.firebasedatabase.app',
     });
   }
 

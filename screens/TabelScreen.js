@@ -6,7 +6,7 @@ export default class ExampleFour extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tableHead: ['No', 'MMI', 'Lokasi', 'Foto', 'Koordinat', 'Action'],
+            tableHead: ['No', 'Nama', 'Tipe MMI', 'Lokasi', 'Koordinat', 'Action'],
             tableData: [
                 ['1', '2', '3', '4', '5', '6'],
                 ['1', '2', '3', '4', '5', '6'],
