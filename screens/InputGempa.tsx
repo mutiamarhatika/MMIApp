@@ -30,6 +30,26 @@ import * as ImagePicker from 'react-native-image-picker';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 
+const formatTimestamp = (timestamp: string | number | Date) => {
+  const date = new Date(timestamp);
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+
+  const formattedDate = `${day < 10 ? '0' + day : day}-${
+    month < 10 ? '0' + month : month
+  }-${year}`;
+  const formattedTime = `${hours < 10 ? '0' + hours : hours}:${
+    minutes < 10 ? '0' + minutes : minutes
+  }:${seconds < 10 ? '0' + seconds : seconds}`;
+
+  return `${formattedDate}, ${formattedTime}`;
+};
+
+
 const Input = () => {
   const [markerCoordinate, setMarkerCoordinate] = useState(null);
   const [, setCurrentLocation] = useState(null);
@@ -47,20 +67,24 @@ const Input = () => {
   const sendDatatoFirebase = async () => {
     if (tipeMMI && namaPengirim && location && markerCoordinate) {
       try {
+        const timestamp = Date.now();
         if (!image) {
-          db().ref('data').push({
-            tipeMMI,
-            namaPengirim,
-            location,
-            image,
-            coordinate: markerCoordinate,
-          });
-          // setTipeMMI('');
-          // setNamaPengirim('');
-          // setLocationButtonText('Lokasi');
-          // setImage(null);
-          // setMarkerCoordinate(null);
-          ToastAndroid.show('Data Terkirim', ToastAndroid.SHORT);
+          db()
+            .ref('data')
+            .push({
+              tipeMMI,
+              namaPengirim,
+              location,
+              image,
+              coordinate: markerCoordinate,
+              timestamp: formatTimestamp(timestamp), // Tambahkan properti timestamp
+            });
+          setTipeMMI('');
+          setNamaPengirim('');
+          setLocationButtonText('Lokasi');
+          setImage(null);
+          setMarkerCoordinate(null);
+          Alert.alert('Sukses', 'Data Berhasil Terkirim');
         } else {
           console.log(image);
           const response = await fetch(image.assets[0].uri);
@@ -71,18 +95,21 @@ const Input = () => {
 
           const imageURL = await storageRef.getDownloadURL();
 
-          db().ref('data').push({
-            tipeMMI,
-            namaPengirim,
-            location,
-            imageURL,
-            coordinate: markerCoordinate,
-          });
-          ToastAndroid.show('Data Terkirim', ToastAndroid.SHORT);
+          db()
+            .ref('data')
+            .push({
+              tipeMMI,
+              namaPengirim,
+              location,
+              imageURL,
+              coordinate: markerCoordinate,
+              timestamp: formatTimestamp(timestamp), // Tambahkan properti timestamp
+            });
+          Alert.alert('Sukses', 'Data Berhasil Terkirim');
         }
       } catch (error) {
         console.error('Error sending data to firebase: ', error);
-        ToastAndroid.show('Gagal mengirim data', ToastAndroid.SHORT);
+        Alert.alert('Gagal', 'Data Gagal Terkirim');
       }
     } else {
       console.error('Harap isi Data terlebih dahulu');
@@ -226,29 +253,6 @@ const Input = () => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <View
-          style={{
-            backgroundColor: '#f8981d',
-            flexDirection: 'row',
-            height: 60,
-            alignItems: 'center',
-            borderBottomLeftRadius:15,
-            borderBottomRightRadius:15
-          }}>
-          <TouchableOpacity
-            onPress={handleBack}
-            style={{marginRight: '20%', marginLeft: '5%'}}
-            activeOpacity={0.8}>
-            <MaterialCommunityIcons
-              name="arrow-left-drop-circle"
-              size={30}
-              color="white"
-            />
-          </TouchableOpacity>
-          <Text style={{color: 'white', fontSize: 18, fontWeight: 'bold'}}>
-            Input Data Gempa
-          </Text>
-        </View>
         <View style={styles.container}>
           {/*Tipe MMI*/}
           <View style={[styles.elevatedCard]}>
@@ -387,7 +391,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     marginHorizontal: 20,
-    marginBottom: 10,
   },
   photo: {
     width: 'auto',

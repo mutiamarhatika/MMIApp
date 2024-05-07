@@ -225,17 +225,17 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     // width: '100%',
     // height: '100%',
-    marginTop: -250,
+    marginTop: -300,
   },
   overlay1: {
     // ...StyleSheet.absoluteFillObject,
     backgroundColor: 'red', // Memastikan latar belakang transparan untuk menampilkan MapView
     paddingTop: 7, // Atur sesuai kebutuhan untuk mengatur posisi informasi gempa di atas MapView
-    marginTop: 120,
+    marginTop: 100,
     width: 30,
     height: 30,
     alignItems: 'center',
-    marginLeft: -320,
+    marginLeft: -300,
 
     // height:'80%'
   },

@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const FirstPage = () => {
     const navigation = useNavigation();
@@ -12,42 +13,43 @@ const FirstPage = () => {
     }
     return (
         <View style={styles.container}>
-            <View style={{ alignItems: 'center', justifyContent: 'center', height: '70%', marginHorizontal: 20 }}>
-                <Text style={[styles.title, { padding: 20 }]}>Yuk Kenali Dirimu Dulu</Text>
-                <Image source={require('../GAMBARMMI/fist.png')} style={{ width: 300, height: 300 }} />
-                <Text style={{ color: 'black', fontWeight: 'bold', marginLeft: 30, marginRight: 30, textAlign: 'center' }}>Note: Jika anda adalah admin maka klik tombol admin, jika anda bukan admin maka klik tombol user</Text>
+            <View style={{ alignItems: 'center', justifyContent: 'center', height: '80%', marginHorizontal: 20, marginTop: "8%" }}>
+                <View style={{marginHorizontal:20, marginBottom:30}}>
+                    <Text style={[styles.title, { padding: 20 }]}>Segera Laporkan Apa Yang Kamu Rasakan</Text> 
+                    <Text style={{textAlign: 'center', fontSize:13 }}>Ayo ikut berkontribusi bersama kami dalam pelaporan gempa yang anda rasakan</Text>
+                </View>
+                <View style={{ width: "100%", height: "70%", marginHorizontal: 20, justifyContent: 'center', alignItems: 'center' }}>
+                    <Image source={require('../GAMBARMMI/fist.png')} style={{ width: "95%", height: "95%" }} />
+                </View>
             </View>
-            <View style={{ alignItems: "center", gap: 10, marginTop:50 }}>
-                <TouchableOpacity onPress={adminPress} style={{ width: '70%', backgroundColor: '#f8981d', alignItems: 'center', justifyContent: 'center', height: 40, borderRadius: 10 }}>
-                    <Text style={styles.buttonText}>Admin</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={userPress} style={{ width: '70%', backgroundColor: '#f8981d', alignItems: 'center', justifyContent: 'center', height: 40, borderRadius: 10 }}>
-                    <Text style={styles.buttonText}>User</Text>
+            <View style={{ alignItems: 'center', marginHorizontal: 40, marginTop:10 }}>
+                <TouchableOpacity activeOpacity={0.8} onPress={userPress} style={{ width: 60, backgroundColor: '#f8981d', alignItems: 'center', justifyContent: 'center', height: 60, borderRadius: 50 }}>
+                    <MaterialCommunityIcons
+                        name="arrow-right-thin"
+                        size={40}
+                        color="white"
+                    />
                 </TouchableOpacity>
             </View>
         </View>
     );
 };
 
-const handleLogin = (type) => {
-    // Handle login based on the type (admin or user)
-    console.log("Logging in as", type);
-};
+// const handleLogin = (type) => {
+//     // Handle login based on the type (admin or user)
+//     console.log("Logging in as", type);
+// };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#fff",
     },
-    navBar: {
-        backgroundColor: "#4CAF50",
-        padding: 15,
-        alignItems: "center",
-    },
     title: {
         color: "black",
         fontSize: 24,
         fontWeight: "bold",
+        textAlign:'center'
     },
     buttonContainer: {
         flex: 1,

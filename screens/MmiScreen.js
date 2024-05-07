@@ -126,13 +126,13 @@ const ImageList = () => {
     }
     return (
         <View style={styles.container}>
-            <View style={styles.navbar}>
+            {/* <View style={styles.navbar}>
                 <TouchableOpacity onPress={handleBack} style={styles.buttonNav} activeOpacity={0.8}>
                     <MaterialCommunityIcons name='arrow-left-drop-circle' size={30} color='white' />
                 </TouchableOpacity>
                 <Text style={styles.textNav}>Keterangan Level MMI</Text>
-            </View>
-            <Swiper style={styles.wrapper} showsButtons={true}>
+            </View> */}
+            <Swiper showsPagination={true} style={styles.wrapper} showsButtons={true}>
                 {data.map(item => (
                     <View key={item.id} style={styles.slide}>
                         <View style={styles.card}>
@@ -172,7 +172,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop:10
     },
-    wrapper: {},
+    wrapper: {
+        // color:'black'
+    },
     slide: {
         flex: 1,
         justifyContent: 'center',

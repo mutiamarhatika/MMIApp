@@ -38,7 +38,7 @@ const MainScreen = () => {
             <Text style={styles.subTitle}>Aplikasi MMI</Text>
             <MaterialCommunityIcons name='account-circle' size={70} color='white' style={{ marginTop: -40, marginRight: -10 }} />
           </View>
-          <TouchableOpacity style={[styles.subContainerHeader, { marginTop: 25 }]} onPress={handleInfoGempaTerkini}>
+          <TouchableOpacity activeOpacity={0.7} style={[styles.subContainerHeader, { marginTop: 25 }]} onPress={handleInfoGempaTerkini}>
             <Text style={styles.subTitle}>Informasi Gempa Saat ini</Text>
             <MaterialCommunityIcons name='chevron-right' size={20} color='white' />
           </TouchableOpacity>
@@ -72,7 +72,7 @@ const MainScreen = () => {
           <View style={{ marginHorizontal: 30 }}>
             {/* CARD 1 START */}
             <View style={styles.cardContent}>
-              <TouchableOpacity style={styles.buttonCard} onPress={handleMMIPage}>
+              <TouchableOpacity activeOpacity={0.7} style={styles.buttonCard} onPress={handleMMIPage}>
                 <Text style={styles.cardTitle}>MMI (Modified Mercalli Intensity)</Text>
                 <MaterialCommunityIcons name='chevron-right' size={20} color='#f8981d' />
               </TouchableOpacity>
@@ -92,7 +92,7 @@ const MainScreen = () => {
 
             {/* CARD 2 START */}
             <View style={styles.cardContent}>
-              <TouchableOpacity style={styles.buttonCard} onPress={handleInputPage}>
+              <TouchableOpacity activeOpacity={0.7} style={styles.buttonCard} onPress={handleInputPage}>
                 <Text style={styles.cardTitle}>Laporkan Gempa</Text>
                 <MaterialCommunityIcons name='chevron-right' size={20} color='#f8981d' />
               </TouchableOpacity>
@@ -100,7 +100,7 @@ const MainScreen = () => {
                 <View>
                   <Text style={{ textAlign: 'justify', marginLeft: 30, marginRight: 5, fontSize: 13 }}>Laporkan sekarang jika anda merasa gempa bumi atau
                     sudah melihat dampak dari gempa bumi sesuai dengan MMI</Text>
-                  <TouchableOpacity onPress={handleInputPage} style={{ marginLeft: 30, backgroundColor: "#f8981d", width: 140, height: 40, borderRadius: 10, alignItems: 'center', justifyContent: 'center', marginTop: 10 }}>
+                  <TouchableOpacity activeOpacity={0.7} onPress={handleInputPage} style={{ marginLeft: 30, backgroundColor: "#f8981d", width: 140, height: 40, borderRadius: 10, alignItems: 'center', justifyContent: 'center', marginTop: 10 }}>
                     <Text style={{ fontWeight: 'bold', color: '#fff', fontSize: 13 }}>Laporkan Sekarang</Text>
                   </TouchableOpacity>
                 </View>
@@ -114,7 +114,7 @@ const MainScreen = () => {
 
             {/* CARD 3 START */}
             <View style={styles.cardContent}>
-              <TouchableOpacity style={styles.buttonCard} onPress={handleInfoGempaTerkini}>
+              <TouchableOpacity activeOpacity={0.7} style={styles.buttonCard} onPress={handleInfoGempaTerkini}>
                 <Text style={styles.cardTitle}>Informasi Gempa Terkini</Text>
                 <MaterialCommunityIcons name='chevron-right' size={20} color='#f8981d' />
               </TouchableOpacity>

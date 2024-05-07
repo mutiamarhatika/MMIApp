@@ -17,14 +17,19 @@ function MyTabs() {
       inactiveColor="black"
       barStyle={{backgroundColor: 'black'}}
       screenOptions={{
-        headerShown: false,
+        // headerShown: false,
         tabBarShowLabel: false,
         tabBarBackground: () => {},
       }}>
       <Tab.Screen
-        name="Input Gempa"
+        name="Input Data"
         component={InputGempa}
         options={{
+          headerShown: true,
+          headerStyle:{backgroundColor:'#f8981d'},
+          headerTintColor:'white',
+          headerTitleAlign:'center',
+          tabBarLabel: 'Input Gempa',
           tabBarIcon: ({focused, size}) => (
             <View
               style={[
@@ -52,6 +57,10 @@ function MyTabs() {
         name="Maps"
         component={maps}
         options={{
+          headerShown: true,
+          headerStyle: { backgroundColor: '#f8981d' },
+          headerTintColor: 'white',
+          headerTitleAlign: 'center',
           tabBarIcon: ({ focused, size }) => (
             <View
               style={[

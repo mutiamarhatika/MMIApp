@@ -21,7 +21,7 @@ const MainScreen = () => {
         navigation.navigate('InfoGempa')
     }
     const handleTableData = () => {
-        navigation.navigate('TabelData')
+        navigation.navigate('data')
     }
     const handleMap = () => {
         navigation.navigate('Map')
@@ -67,44 +67,44 @@ const MainScreen = () => {
 
             {/* Main Card di dalam ScrollView agar hanya konten di dalamnya yang dapat di-scroll */}
             {/* <ScrollView style={{ flex: 1 }}> */}
-                <View style={{ backgroundColor: 'white', flex:1 }}>
-                    {/* Konten Main Card */}
-                    <View style={{ marginHorizontal: 30 }}>
-                        {/* CARD 1 START */}
-                        <View style={styles.cardContent}>
-                            <TouchableOpacity style={styles.buttonCard} onPress={handleTableData}>
-                                <Text style={styles.cardTitle}>Tabel Pembuat Keputusan</Text>
-                                <MaterialCommunityIcons name='chevron-right' size={20} color='#f8981d' />
-                            </TouchableOpacity>
-                            <View style={styles.textCard}>
-                                <Image
-                                    source={require('../GAMBARMMI/table.png')}
-                                    style={styles.imageCard}
-                                />
-                                <Text style={{ textAlign: 'justify', fontSize: 13 }}>Tabel ini dibuat untuk melihat semua hasil penambahan data yang 
+            <View style={{ backgroundColor: 'white', flex: 1 }}>
+                {/* Konten Main Card */}
+                <View style={{ marginHorizontal: 30 }}>
+                    {/* CARD 1 START */}
+                    <View style={styles.cardContent}>
+                        <TouchableOpacity style={styles.buttonCard} onPress={handleTableData}>
+                            <Text style={styles.cardTitle}>Tabel Pembuat Keputusan</Text>
+                            <MaterialCommunityIcons name='chevron-right' size={20} color='#f8981d' />
+                        </TouchableOpacity>
+                        <View style={styles.textCard}>
+                            <Image
+                                source={require('../GAMBARMMI/table.png')}
+                                style={[styles.imageCard, {marginTop:-10}]}
+                            />
+                            <Text style={{ textAlign: 'justify', fontSize: 13 }}>Tabel ini dibuat untuk melihat semua hasil penambahan data yang
                                 dilakukan user, yang kemudian akan diputuskan oleh admin data/laporan manakah yang sesuai dengan kejadian.</Text>
-                            </View>
                         </View>
-                        {/* CARD 1 END */}
-                        {/* CARD 2 START */}
-                        <View style={styles.cardContent}>
-                            <TouchableOpacity style={styles.buttonCard} onPress={handleMap}>
-                                <Text style={styles.cardTitle}>Lihat Detail Kejadian</Text>
-                                <MaterialCommunityIcons name='chevron-right' size={20} color='#f8981d' />
-                            </TouchableOpacity>
-                            <View style={styles.textCard}>
-                                <Image
-                                    source={require('../GAMBARMMI/table.png')}
-                                    style={styles.imageCard}
-                                />
-                                <Text style={{ textAlign: 'justify', fontSize: 13 }}>Tabel ini dibuat untuk melihat semua hasil penambahan data yang 
-                                dilakukan user, yang kemudian akan diputuskan oleh admin data/laporan manakah yang sesuai dengan kejadian.</Text>
-                            </View>
-                        </View>
-                        {/* CARD 2 END */}
-
                     </View>
+                    {/* CARD 1 END */}
+                    {/* CARD 2 START */}
+                    <View style={styles.cardContent}>
+                        <TouchableOpacity style={styles.buttonCard} onPress={handleMap}>
+                            <Text style={styles.cardTitle}>Lihat Detail Kejadian</Text>
+                            <MaterialCommunityIcons name='chevron-right' size={20} color='#f8981d' />
+                        </TouchableOpacity>
+                        <View style={styles.textCard}>
+                            <Image
+                                source={require('../GAMBARMMI/globe.png')}
+                                style={[styles.imageCard, {width:100, height:120}]}
+                            />
+                            <Text style={{ textAlign: 'justify', fontSize: 13 }}>Tabel ini dibuat untuk melihat semua hasil penambahan data yang
+                                dilakukan user, yang kemudian akan diputuskan oleh admin data/laporan manakah yang sesuai dengan kejadian.</Text>
+                        </View>
+                    </View>
+                    {/* CARD 2 END */}
+
                 </View>
+            </View>
             {/* </ScrollView> */}
         </SafeAreaView>
     )
@@ -168,7 +168,8 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.25,
         shadowRadius: 3,
-        elevation: 5
+        elevation: 5,
+        // height:190
     },
     buttonCard: {
         flexDirection: 'row',
