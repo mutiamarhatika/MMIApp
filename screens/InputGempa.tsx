@@ -105,6 +105,11 @@ const Input = () => {
               coordinate: markerCoordinate,
               timestamp: formatTimestamp(timestamp), // Tambahkan properti timestamp
             });
+            setTipeMMI('');
+            setNamaPengirim('');
+            setLocationButtonText('Lokasi');
+            setImage(null);
+            setMarkerCoordinate(null);
           Alert.alert('Sukses', 'Data Berhasil Terkirim');
         }
       } catch (error) {

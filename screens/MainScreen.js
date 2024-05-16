@@ -8,10 +8,63 @@ const MainScreen = () => {
 
   const [dataGempa, setDataGempa] = useState([])
   useEffect(() => {
-    fetch('https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json')
-      .then(response => response.json())
-      .then(json => setDataGempa(json.Infogempa.gempa))
-  }, [])
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://react-native-mmi-app-default-rtdb.asia-southeast1.firebasedatabase.app/user-input.json');
+        if (!response.ok) {
+          throw new Error('Gagal mengambil data');
+        }
+        const json = await response.json();
+        // Mengubah objek ke dalam array agar dapat diolah
+        const dataArray = Object.entries(json).map(([id, data]) => ({ id, ...data }));
+        // Mengambil data terbaru (data yang terakhir setelah diurutkan)
+        const latestData = dataArray.length > 0 ? dataArray[dataArray.length - 1] : null;
+        // Mengubah data terbaru ke format yang sesuai dengan state dataGempa
+        const newDataGempa = latestData ? [{
+          id: latestData.id,
+          waktu: new Date(latestData.waktu).toLocaleString(),
+          magnitude: extractMagnitude(latestData.deskripsi),
+          kedalaman: extractKedalaman(latestData.deskripsi),
+          dirasakan: latestData.dirasakan,
+          lokasi: extractLokasi(latestData.deskripsi)
+        }] : [];
+        setDataGempa(newDataGempa);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    // Panggil fetchData saat komponen pertama kali dimuat
+    fetchData();
+  }, []);
+
+  const extractMagnitude = (deskripsi) => {
+    // Mencari teks yang diawali dengan "Mag:" dan diakhiri dengan "SR,"
+    const regex = /Mag:(.*?)(?= SR)/;
+    const match = deskripsi.match(regex);
+    return match ? match[1].trim() : '';
+  };
+
+  const extractKedalaman = (deskripsi) => {
+    // Mencari teks yang diawali dengan "Kedalaman:" dan diakhiri dengan "Km"
+    const regex = /Kedalaman:(.*?)(?= Km)/;
+    const match = deskripsi.match(regex);
+    return match ? match[1].trim() : '';
+  };
+
+  const extractLokasi = (deskripsi) => {
+    // Mencari teks yang mengandung koordinat lintang dan bujur
+    const regex = /Lok:(\d+\.\d+)\s+LS,\s*(\d+\.\d+)\s+BT/;
+    const match = deskripsi.match(regex);
+    // Jika ada kecocokan, ambil nilai lintang dan bujur
+    if (match && match.length === 3) {
+      const lintang = match[1].trim();
+      const bujur = match[2].trim();
+      return `${lintang}, ${bujur}`;
+    } else {
+      return 'N/A';
+    }
+  };
 
   // const response = await fetch('https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json');
   // const data = await response.json();
@@ -49,18 +102,18 @@ const MainScreen = () => {
       <View style={styles.cardOverlay}>
         <View style={styles.subCardOverlay}>
           <MaterialCommunityIcons name='pulse' size={40} color='black' />
-          <Text>{dataGempa.Magnitude}</Text>
+          <Text>{dataGempa.length > 0 ? dataGempa[0].magnitude : ''}</Text>
           <Text>Magnitude</Text>
         </View>
         <View style={styles.subCardOverlay}>
           <MaterialCommunityIcons name='waveform' size={40} color='black' />
-          <Text>{dataGempa.Kedalaman}</Text>
+          <Text>{dataGempa.length > 0 ? dataGempa[0].kedalaman : ''}</Text>
           <Text>Kedalaman</Text>
         </View>
         <View style={styles.subCardOverlay}>
           <MaterialCommunityIcons name='map-marker-radius' size={40} color='black' />
-          <Text>{dataGempa.Lintang},</Text>
-          <Text>{dataGempa.Bujur}</Text>
+          <Text>{dataGempa.length > 0 ? dataGempa[0].lokasi : ''}</Text>
+          {/* <Text>{dataGempa.Bujur}</Text> */}
         </View>
       </View>
       {/* 3 CARD ROW END */}
@@ -184,37 +237,37 @@ const styles = StyleSheet.create({
     elevation: 5
   },
   // CARD CONTENT
-  cardContent:{
-    padding: 25, 
-    backgroundColor: 'white', 
-    borderRadius: 20, 
-    marginTop: 20, 
-    shadowColor: '#000', 
-    shadowOffset: { width: 0, height: 2 }, 
-    shadowOpacity: 0.25, 
-    shadowRadius: 3, 
+  cardContent: {
+    padding: 25,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    marginTop: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3,
     elevation: 5
   },
-  buttonCard:{
-    flexDirection: 'row', 
+  buttonCard: {
+    flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  cardTitle:{
-    fontWeight: 'bold', 
-    color: '#f8981d', 
+  cardTitle: {
+    fontWeight: 'bold',
+    color: '#f8981d',
     fontSize: 16
   },
-  textCard:{
-    flexDirection: 'row', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    marginLeft: 30, 
-    marginRight: 50, 
+  textCard: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 30,
+    marginRight: 50,
     marginTop: 10
   },
-  imageCard:{
-    width: 120, 
-    height: 140, 
+  imageCard: {
+    width: 120,
+    height: 140,
     resizeMode: 'contain'
   }
 })
